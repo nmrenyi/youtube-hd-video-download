@@ -36,10 +36,9 @@ def process(link):
 
 def main():
     logging.basicConfig(level=logging.DEBUG)
-    root_logger = logging.getLogger()
+    root_logger = logging.getLogger(__name__)
     args = parse_args()
     logging.info(args)
-    exit(0)
     if args.link:
         process(args.link)
     else:
