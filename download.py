@@ -9,7 +9,10 @@ def main():
     print(thumbnail_url)
     print(yt.streams)
 
-
+    # Get highest bitrate audio stream for given codec (defaults to mp4)
+    # ref: https://pytube.io/en/latest/_modules/pytube/query.html#StreamQuery.get_audio_only
+    audio = yt.streams.get_audio_only(subtype='mp4')
+    print(audio)
 
 if __name__ == '__main__':
     main()
