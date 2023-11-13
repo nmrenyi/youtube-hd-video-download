@@ -13,7 +13,7 @@ def parse_args():
 
 def process(link):
     file_name = download(link)
-    combine(file_name + '_video.mp4', file_name + '_audio.mp4', file_name + '_final.mp4')
+    combine(file_name + '_video.mp4', file_name + '_audio.mp4', file_name + '.mp4')
 
 
 def main():
