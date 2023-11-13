@@ -1,7 +1,7 @@
 import pytube
 
 def download(url):
-    yt = pytube.YouTube(url)
+    yt = pytube.YouTube(url, proxies={'http': '127.0.0.1:7890', 'https': '127.0.0.1:7890'})
     file_name = yt.title
     thumbnail_url = yt.thumbnail_url
     print(thumbnail_url)
