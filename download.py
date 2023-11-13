@@ -22,7 +22,7 @@ def slugify(value, allow_unicode=False):
     return re.sub(r'[-\s]+', '-', value).strip('-_')
 
 def download(url, intermidiate_dir):
-    yt = pytube.YouTube(url, proxies={'http': '127.0.0.1:7890', 'https': '127.0.0.1:7890'}, use_oauth=True, allow_oauth_cache=True)
+    yt = pytube.YouTube(url, proxies={'http': '127.0.0.1:7890', 'https': '127.0.0.1:7890'})
     file_name = slugify(yt.title)
     thumbnail_url = yt.thumbnail_url
     print(thumbnail_url)
