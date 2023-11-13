@@ -1,10 +1,8 @@
 import pytube
 
-def main():
-    url = 'https://www.youtube.com/watch?v=Ed4WOs29E08'
+def download(url):
     yt = pytube.YouTube(url)
-    title = yt.title
-    print(title)
+    file_name = yt.title
     thumbnail_url = yt.thumbnail_url
     print(thumbnail_url)
     print(yt.streams)
@@ -14,13 +12,14 @@ def main():
     audio = yt.streams.get_audio_only(subtype='mp4')
     print(audio)
     # download
-    audio.download(filename='audio.mp4')
+    audio.download(filename=f'{file_name}_audio.mp4')
 
     # Get the highest resolution video, without audio
     video = yt.streams.filter(only_video=True, subtype='mp4').order_by('resolution').desc().first()
     print(video)
     # download
-    video.download(filename='video.mp4')
+    video.download(filename=f'{file_name}_video.mp4')
+    return file_name
 
 if __name__ == '__main__':
-    main()
+    download()
