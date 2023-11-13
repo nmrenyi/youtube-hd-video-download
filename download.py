@@ -27,7 +27,6 @@ def download(url, intermidiate_dir):
     thumbnail_url = yt.thumbnail_url
     logging.info(file_name)
     logging.info(thumbnail_url)
-    logging.info(yt.streams)
 
     # Get highest bitrate audio stream for given codec (defaults to mp4)
     # ref: https://pytube.io/en/latest/_modules/pytube/query.html#StreamQuery.get_audio_only

@@ -36,10 +36,13 @@ def process(link):
 
 
 def main():
+
+    # ref: https://github.com/amilstead/python-logging-examples/blob/master/loggers/simple/main.py
     logging.basicConfig(level=logging.INFO)
     root_logger = logging.getLogger(__name__)
     args = parse_args()
     logging.info(args)
+
     if args.link:
         process(args.link)
     else:
