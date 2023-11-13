@@ -1,8 +1,28 @@
+import unicodedata
+import re
+
 import pytube
+
+def slugify(value, allow_unicode=False):
+    """
+    ref: https://stackoverflow.com/questions/295135/turn-a-string-into-a-valid-filename
+    Taken from https://github.com/django/django/blob/master/django/utils/text.py
+    Convert to ASCII if 'allow_unicode' is False. Convert spaces or repeated
+    dashes to single dashes. Remove characters that aren't alphanumerics,
+    underscores, or hyphens. Convert to lowercase. Also strip leading and
+    trailing whitespace, dashes, and underscores.
+    """
+    value = str(value)
+    if allow_unicode:
+        value = unicodedata.normalize('NFKC', value)
+    else:
+        value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore').decode('ascii')
+    value = re.sub(r'[^\w\s-]', '', value.lower())
+    return re.sub(r'[-\s]+', '-', value).strip('-_')
 
 def download(url):
     yt = pytube.YouTube(url, proxies={'http': '127.0.0.1:7890', 'https': '127.0.0.1:7890'})
-    file_name = yt.title
+    file_name = slugify(yt.title)
     thumbnail_url = yt.thumbnail_url
     print(thumbnail_url)
     print(yt.streams)
