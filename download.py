@@ -31,14 +31,24 @@ def download(url):
     # ref: https://pytube.io/en/latest/_modules/pytube/query.html#StreamQuery.get_audio_only
     audio = yt.streams.get_audio_only(subtype='mp4')
     print(audio)
+
+    # check if directory exists
+    intermidiate_dir = 'intermidiate-videos'
+    final_dir = 'final-videos'
+
+    if not os.path.exists(intermidiate_dir):
+        os.makedirs(intermidiate_dir)
+    if not os.path.exists(final_dir):
+        os.makedirs(final_dir)
+
     # download
-    audio.download(filename=f'{file_name}_audio.mp4')
+    audio.download(filename=os.path.join(intermidiate_dir, f'{file_name}_audio.mp4'))
 
     # Get the highest resolution video, without audio
     video = yt.streams.filter(only_video=True, subtype='mp4').order_by('resolution').desc().first()
     print(video)
     # download
-    video.download(filename=f'{file_name}_video.mp4')
+    video.download(filename=os.path.join(final_dir, f'{file_name}_video.mp4'))
     return file_name
 
 if __name__ == '__main__':
