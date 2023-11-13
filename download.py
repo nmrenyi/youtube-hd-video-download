@@ -21,7 +21,7 @@ def slugify(value, allow_unicode=False):
     value = re.sub(r'[^\w\s-]', '', value.lower())
     return re.sub(r'[-\s]+', '-', value).strip('-_')
 
-def download(url):
+def download(url, intermidiate_dir):
     yt = pytube.YouTube(url, proxies={'http': '127.0.0.1:7890', 'https': '127.0.0.1:7890'})
     file_name = slugify(yt.title)
     thumbnail_url = yt.thumbnail_url
@@ -32,15 +32,6 @@ def download(url):
     # ref: https://pytube.io/en/latest/_modules/pytube/query.html#StreamQuery.get_audio_only
     audio = yt.streams.get_audio_only(subtype='mp4')
     print(audio)
-
-    # check if directory exists
-    intermidiate_dir = 'intermidiate-videos'
-    final_dir = 'final-videos'
-
-    if not os.path.exists(intermidiate_dir):
-        os.makedirs(intermidiate_dir)
-    if not os.path.exists(final_dir):
-        os.makedirs(final_dir)
 
     # download
     audio.download(filename=os.path.join(intermidiate_dir, f'{file_name}_audio.mp4'))

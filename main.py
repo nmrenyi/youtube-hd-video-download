@@ -1,3 +1,4 @@
+import os
 import argparse
 import multiprocessing
 
@@ -12,8 +13,15 @@ def parse_args():
     return parser.parse_args()
 
 def process(link):
-    file_name = download(link)
-    combine(file_name + '_video.mp4', file_name + '_audio.mp4', file_name + '.mp4')
+    intermidiate_dir = 'intermidiate-videos'
+    final_dir = 'final-videos'
+    if not os.path.exists(intermidiate_dir):
+        os.makedirs(intermidiate_dir)
+    if not os.path.exists(final_dir):
+        os.makedirs(final_dir)
+
+    file_name = download(link, intermidiate_dir)
+    combine(file_name + '_video.mp4', file_name + '_audio.mp4', os.path.join(final_dir, file_name + '.mp4'))
 
 
 def main():
