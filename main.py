@@ -1,5 +1,3 @@
-import os
-import sys
 from download import download
 from combine import combine
 
