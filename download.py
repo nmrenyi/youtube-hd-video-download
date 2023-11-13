@@ -25,6 +25,7 @@ def download(url, intermidiate_dir):
     yt = pytube.YouTube(url, proxies={'http': '127.0.0.1:7890', 'https': '127.0.0.1:7890'})
     file_name = slugify(yt.title)
     thumbnail_url = yt.thumbnail_url
+    print(file_name)
     print(thumbnail_url)
     print(yt.streams)
 
