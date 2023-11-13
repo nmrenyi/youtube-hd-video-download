@@ -19,8 +19,10 @@ def process(link):
     intermidiate_dir = 'intermidiate-videos'
     final_dir = 'final-videos'
     if not os.path.exists(intermidiate_dir):
+        logging.info('Creating intermidiate dir')
         os.makedirs(intermidiate_dir)
     if not os.path.exists(final_dir):
+        logging.info('Creating final dir')
         os.makedirs(final_dir)
     try:
         file_name = download(link, intermidiate_dir)
@@ -35,7 +37,7 @@ def process(link):
 
 
 def main():
-    logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(level=logging.INFO)
     root_logger = logging.getLogger(__name__)
     args = parse_args()
     logging.info(args)
