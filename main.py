@@ -10,7 +10,6 @@ def work(link):
 def main():
     # config file
     config_file = 'config'
-    # check if config file exists
     with open(config_file, 'r') as f:
         lines = f.read().strip().split('\n')
     
