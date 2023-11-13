@@ -49,7 +49,7 @@ def download(url):
     video = yt.streams.filter(only_video=True, subtype='mp4').order_by('resolution').desc().first()
     print(video)
     # download
-    video.download(filename=os.path.join(final_dir, f'{file_name}_video.mp4'))
+    video.download(filename=os.path.join(intermidiate_dir, f'{file_name}_video.mp4'))
     return file_name
 
 if __name__ == '__main__':
