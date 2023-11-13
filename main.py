@@ -1,6 +1,7 @@
 import os
 import argparse
 import multiprocessing
+import logging
 
 import pytube
 from download import download
@@ -34,8 +35,11 @@ def process(link):
 
 
 def main():
+    logging.basicConfig(level=logging.DEBUG)
+    root_logger = logging.getLogger()
     args = parse_args()
-
+    logging.info(args)
+    exit(0)
     if args.link:
         process(args.link)
     else:
