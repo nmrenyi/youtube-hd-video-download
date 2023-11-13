@@ -21,7 +21,7 @@ def process(link):
         os.makedirs(final_dir)
 
     file_name = download(link, intermidiate_dir)
-    combine(file_name + '_video.mp4', file_name + '_audio.mp4', os.path.join(final_dir, file_name + '.mp4'))
+    combine(os.path.join(intermidiate_dir, file_name + '_video.mp4'), os.path.join(intermidiate_dir, file_name + '_audio.mp4'), os.path.join(final_dir, file_name + '.mp4'))
 
 
 def main():
