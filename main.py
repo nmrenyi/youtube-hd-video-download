@@ -26,6 +26,10 @@ def process(link):
     except pytube.exceptions.AgeRestrictedError:
         print('Age restricted video, skipping')
         return
+    except Exception as e:
+        print('Error occured, skipping')
+        print(e)
+        return
     combine(os.path.join(intermidiate_dir, file_name + '_video.mp4'), os.path.join(intermidiate_dir, file_name + '_audio.mp4'), os.path.join(final_dir, file_name + '.mp4'))
 
 
