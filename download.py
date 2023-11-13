@@ -15,7 +15,7 @@ def main():
     print(audio)
 
     # Get the highest resolution video, without audio
-    videos = yt.streams.filter(only_video=True)
+    videos = yt.streams.filter(only_video=True, subtype='mp4').order_by('resolution').desc()
     print(videos)
 
 if __name__ == '__main__':
