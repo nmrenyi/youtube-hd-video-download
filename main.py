@@ -10,6 +10,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--worker', '-w', type=int, default=0, help='number of download workers, default 0 (single process)')
     parser.add_argument('--config', '-c', type=str, default='config.example', help='config file, default config.example')
+    parser.add_argument('--link', '-l', type=str, default=None, help='single link to download, default None')
     return parser.parse_args()
 
 def process(link):
@@ -27,17 +28,20 @@ def process(link):
 def main():
     args = parse_args()
 
-    with open(args.config, 'r') as f:
-        lines = f.read().strip().split('\n')
-    
-    if args.worker > 0:
-        pool = multiprocessing.Pool(args.worker)
-        pool.map(process, lines)
-
+    if args.link:
+        process(args.link)
     else:
-        for link in lines:
-            process(link)
-    
+        with open(args.config, 'r') as f:
+            lines = f.read().strip().split('\n')
+        
+        if args.worker > 0:
+            pool = multiprocessing.Pool(args.worker)
+            pool.map(process, lines)
+
+        else:
+            for link in lines:
+                process(link)
+
 
 
 if __name__ == '__main__':
