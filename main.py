@@ -1,11 +1,5 @@
-from multiprocessing import Pool
-
 from download import download
 from combine import combine
-
-def work(link):
-    file_name = download(link)
-    combine(file_name + '_video.mp4', file_name + '_audio.mp4', file_name + '.mp4')
 
 def main():
     # config file
@@ -13,9 +7,11 @@ def main():
     with open(config_file, 'r') as f:
         lines = f.read().strip().split('\n')
     
-    with Pool(10) as p:
-        p.map(download, lines)
+    for link in lines:
+        file_name = download(link)
+        combine(file_name + '_video.mp4', file_name + '_audio.mp4', file_name + '.mp4')
 
+    
 
 
 if __name__ == '__main__':
