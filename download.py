@@ -13,10 +13,14 @@ def main():
     # ref: https://pytube.io/en/latest/_modules/pytube/query.html#StreamQuery.get_audio_only
     audio = yt.streams.get_audio_only(subtype='mp4')
     print(audio)
+    # download
+    audio.download(filename='audio.mp4')
 
     # Get the highest resolution video, without audio
     video = yt.streams.filter(only_video=True, subtype='mp4').order_by('resolution').desc().first()
     print(video)
+    # download
+    video.download(filename='video.mp4')
 
 if __name__ == '__main__':
     main()
