@@ -9,7 +9,7 @@ def main():
     
     for link in lines:
         file_name = download(link)
-        combine(file_name + '_video.mp4', file_name + '_audio.mp4', file_name + '.mp4')
+        combine(file_name + '_video.mp4', file_name + '_audio.mp4', file_name + '_final.mp4')
 
     
 
