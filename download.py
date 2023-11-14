@@ -3,6 +3,7 @@ import unicodedata
 import re
 import logging
 import pytube
+import requests
 
 def slugify(value, allow_unicode=False):
     """
@@ -42,5 +43,10 @@ def download(url, intermidiate_dir):
     video.download(filename=os.path.join(intermidiate_dir, f'{file_name}_video.mp4'))
     return file_name
 
+def get_pic(url):
+    r = requests.get(url, stream=True, proxies={'http': '127.0.0.1:7890', 'https': '127.0.0.1:7890'})
+    with open('./test.jpg', mode='wb') as f:
+        f.write(r.content)
+
 if __name__ == '__main__':
-    download()
+    get_pic('https://i.ytimg.com/vi/J0w0t4Qn6LY/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AOn4CLCSnM7iOtKzkFaBpHlPvKfgrr_umg')
