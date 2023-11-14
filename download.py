@@ -4,6 +4,7 @@ import re
 import logging
 import pytube
 import requests
+from tqdm import tqdm
 
 def slugify(value, allow_unicode=False):
     """
