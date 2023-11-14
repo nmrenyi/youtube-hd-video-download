@@ -4,3 +4,11 @@ The video downloaded by `pytube` with default parameters is not in highest resol
 To solve this problem in a simple way, we can download the video and audio separately and combine them with `ffmpeg`. That's what repository is for.
 
 Referring to [pytube](https://pytube.io/en/latest/index.html)
+
+TODO:
+1. add more doc
+2. release
+3. progress bar of downloading
+4. progress bar of combinining
+5. proxy config
+6. more elegant input links file
