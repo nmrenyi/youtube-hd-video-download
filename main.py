@@ -4,7 +4,7 @@ import multiprocessing
 import logging
 
 import pytube
-from download import download
+from download import VideoDownloader
 from combine import combine
 
 
@@ -25,7 +25,11 @@ def process(link):
         logging.info('Creating final dir')
         os.makedirs(final_dir)
     try:
-        file_name = download(link, intermidiate_dir)
+        downloader = VideoDownloader(link, intermidiate_dir)
+        file_name = downloader.file_name
+        downloader.download_video()
+        downloader.download_audio()
+        downloader.download_pic()
     except pytube.exceptions.AgeRestrictedError:
         logging.exception('Age restricted video, skipping')
         return
